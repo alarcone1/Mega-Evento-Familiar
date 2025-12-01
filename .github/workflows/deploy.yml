@@ -28,7 +28,7 @@ jobs:
           cache: 'npm'
           
       - name: Instalar dependencias
-        run: npm ci
+        run: npm install
         
       - name: Construir el proyecto
         # 👇 AQUÍ PASAMOS LA CLAVE SECRETA AL CONSTRUCTOR
