@@ -4,11 +4,12 @@ import CountdownTimer from './components/CountdownTimer';
 import InfoModal from './components/InfoModal';
 import FloatingParticles from './components/FloatingParticles';
 import Confetti from './components/Confetti';
+import PhotoCarousel from './components/PhotoCarousel';
 
 // CONFIGURATION: Set your event date here
 // Setting a date in the future for demonstration.
 // Format: YYYY-MM-DDTHH:mm:ss
-const EVENT_DATE = "2025-12-31T15:00:00"; 
+const EVENT_DATE = "2025-12-31T15:00:00";
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,38 +18,39 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen relative bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 overflow-hidden flex flex-col">
       {/* Background Ambience */}
+      <PhotoCarousel />
       <FloatingParticles />
-      
+
       {/* Conditional Confetti */}
       {isEventStarted && <Confetti />}
 
-      <main className="flex-grow flex flex-col items-center justify-center relative z-10 py-12">
-        
+      <main className="flex-grow flex flex-col items-center justify-center relative z-10 py-12 pointer-events-none">
+
         {/* Header Section */}
         <div className="text-center mb-8 sm:mb-12 px-4 w-full">
           <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-white text-sm font-semibold tracking-wider border border-white/20 shadow-lg">
             ¡FALTA POCO!
           </div>
           <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-white mb-6 tracking-tight drop-shadow-lg leading-tight">
-            Mega Evento <br/>
+            Mega Evento <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">
               Familiar
             </span>
           </h1>
-          
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-white/90 text-sm sm:text-lg font-medium">
             {/* Date Pill */}
-            <div className="flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full backdrop-blur-sm border border-white/5">
+            <div className="flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full backdrop-blur-sm border border-white/5 pointer-events-auto">
               <Calendar className="w-5 h-5 text-yellow-300" />
               <span>31 de Diciembre, 3:00 PM</span>
             </div>
 
             {/* Location Link Pill */}
-            <a 
+            <a
               href="https://www.tiktok.com/@escapeurbanomtr/video/7526221601902234886"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/5 transition-all hover:scale-105 group cursor-pointer"
+              className="flex items-center gap-2 bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/5 transition-all hover:scale-105 group cursor-pointer pointer-events-auto"
               title="Ver video de la finca"
             >
               <MapPin className="w-5 h-5 text-yellow-300 group-hover:animate-bounce" />
@@ -59,14 +61,16 @@ const App: React.FC = () => {
         </div>
 
         {/* Timer Section */}
-        <CountdownTimer 
-          targetDate={EVENT_DATE} 
-          onComplete={() => setIsEventStarted(true)} 
-        />
+        <div className="pointer-events-auto">
+          <CountdownTimer
+            targetDate={EVENT_DATE}
+            onComplete={() => setIsEventStarted(true)}
+          />
+        </div>
 
         {/* Message for when event starts */}
         {isEventStarted && (
-          <div className="mt-12 text-center animate-bounce">
+          <div className="mt-12 text-center animate-bounce pointer-events-auto">
             <h2 className="text-4xl font-bold text-white">¡El evento ha comenzado! 🥳</h2>
           </div>
         )}
@@ -91,9 +95,9 @@ const App: React.FC = () => {
       </footer>
 
       {/* Modal Overlay */}
-      <InfoModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <InfoModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
       />
     </div>
   );
