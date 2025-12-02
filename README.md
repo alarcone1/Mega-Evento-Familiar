@@ -1,20 +1,78 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Mega Evento Familiar 🎉
 
-# Run and deploy your AI Studio app
+¡Bienvenido al repositorio oficial del **Mega Evento Familiar**!
+Esta es una aplicación web moderna, interactiva y emotiva diseñada para generar expectativa y emoción antes del gran reencuentro familiar.
 
-This contains everything you need to run your app locally.
+![Preview](https://alarcone1.github.io/Mega-Evento-Familiar/photos/foto20.jpeg)
 
-View your app in AI Studio: https://ai.studio/apps/drive/1RQniCKhIrsLj8yrRe7P7niBfQqc_A6Nc
+## ✨ Características Principales
 
-## Run Locally
+*   **⏳ Cuenta Regresiva Dinámica:**
+    *   Muestra Días, Horas, Minutos y Segundos restantes para el evento.
+    *   **Efectos Visuales:** Los cajones de tiempo parpadean en amarillo cuando cambian, marcando el paso del tiempo de forma dinámica.
+    *   Animación de celebración al llegar a cero.
 
-**Prerequisites:**  Node.js
+*   **📸 Carrusel de Recuerdos "Evocativo":**
+    *   **Desplazamiento Infinito:** Las fotos familiares giran suavemente en el fondo.
+    *   **Efecto Nostalgia:** Las fotos tienen un filtro sepia/blanco y negro que se elimina al pasar el mouse, revelando los colores originales.
+    *   **Interactivo:** Al hacer clic en una foto, se abre en pantalla completa (modal).
+    *   **Orden Aleatorio:** Cada vez que recargas la página, las fotos aparecen en un orden diferente.
+    *   **Diseño Responsivo:** En celulares, el carrusel se ubica en la parte inferior para no estorbar; en PC, se mantiene centrado.
 
+*   **✨ Atmósfera Mágica:**
+    *   Fondo con partículas flotantes interactivas (se conectan al acercarse, simulando lazos familiares).
+    *   Diseño elegante con gradientes y tipografías modernas.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+*   **📲 Listo para Compartir:**
+    *   Configurado con etiquetas **Open Graph** para que al compartir el enlace en WhatsApp o Facebook aparezca una hermosa tarjeta de previsualización con foto.
+
+## 🛠️ Tecnologías Usadas
+
+*   **React** (con Vite)
+*   **TypeScript**
+*   **Tailwind CSS** (Estilos y animaciones)
+*   **Lucide React** (Iconos)
+
+## 🚀 Cómo correr el proyecto localmente
+
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone https://github.com/alarcone1/Mega-Evento-Familiar.git
+    cd Mega-Evento-Familiar
+    ```
+
+2.  **Instalar dependencias:**
+    ```bash
+    npm install
+    ```
+
+3.  **Iniciar el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+    Abre tu navegador en `http://localhost:5173` (o el puerto que indique la consola).
+
+## 🖼️ Cómo agregar más fotos
+
+El sistema está diseñado para ser fácil de actualizar. Para agregar nuevas fotos al carrusel:
+
+1.  Guarda tus fotos en la carpeta `public/photos`.
+2.  Asegúrate de nombrarlas siguiendo la secuencia: `foto30.jpeg`, `foto31.jpeg`, etc.
+3.  Abre el archivo `src/components/PhotoCarousel.tsx`.
+4.  Busca la constante `PHOTO_COUNT` al inicio del archivo y actualiza el número:
+    ```typescript
+    // Ejemplo: si subiste hasta la foto 50
+    const PHOTO_COUNT = 50;
+    ```
+5.  ¡Listo! El carrusel cargará automáticamente las nuevas fotos.
+
+## 🌍 Despliegue (GitHub Pages)
+
+Este proyecto está configurado para desplegarse automáticamente en GitHub Pages.
+Solo necesitas hacer `push` a la rama `main` y los cambios se reflejarán en unos minutos en:
+
+👉 **https://alarcone1.github.io/Mega-Evento-Familiar/**
+
+---
+
+Hecho con ❤️ para la familia.
