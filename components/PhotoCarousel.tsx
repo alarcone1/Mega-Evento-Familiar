@@ -25,7 +25,7 @@ const PhotoCarousel: React.FC = () => {
   return (
     <>
       {/* Carousel Container */}
-      <div className="absolute inset-0 z-1 flex items-center justify-center overflow-hidden pointer-events-auto translate-y-32">
+      <div className="absolute inset-0 z-1 flex items-end pb-48 sm:items-center sm:pb-0 sm:translate-y-32 justify-center overflow-hidden pointer-events-auto">
         {/* Gradient Masks for "Fade" effect */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-indigo-500 via-indigo-500/50 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-pink-500 via-pink-500/50 to-transparent z-10 pointer-events-none" />
