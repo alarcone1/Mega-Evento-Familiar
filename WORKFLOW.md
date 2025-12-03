@@ -43,10 +43,10 @@ El proceso siguió una metodología lineal y progresiva, aprovechando la fortale
 
 Para convertir este flujo en un sistema robusto de producción, sugiero las siguientes mejoras:
 
-### A. Fase de Ideación: Generar "Specs" Técnicas
+### A. Fase de Ideación: Generar "Specs" Técnicas (✅ Implementado)
 En lugar de solo pedir un prompt, pídele a Gemini que genere un archivo `spec.md` (Especificaciones Técnicas).
 *   *Ejemplo:* "Gemini, actúa como un Arquitecto de Software. Basado en mi idea, genera un archivo `spec.md` que defina: Stack tecnológico, Estructura de carpetas sugerida, y Lista de componentes necesarios."
-*   *Beneficio:* Esto sirve como "contrato" para que AI Studio y Antigravity sigan la misma línea.
+*   *Beneficio:* Esto sirve como "contrato" para que AI Studio y Antigravity sigan la misma línea. **(Ver `spec.md` en este repositorio).**
 
 ### B. Integración con GitHub: "Issues" como Tareas
 Usa las herramientas de gestión de proyectos de GitHub.
@@ -58,10 +58,10 @@ Pídele a Antigravity que configure **GitHub Actions**.
 *   *Acción:* Crear un flujo que, cada vez que hagas `git push`, ejecute pruebas básicas o verifique que el código no tenga errores de sintaxis.
 *   *Beneficio:* Aseguras que lo que subes a la nube siempre funciona, dándote más confianza como desarrollador.
 
-### D. Documentación Viva
-Mantén el `README.md` y un archivo `CHANGELOG.md` actualizados.
+### D. Documentación Viva (✅ Implementado)
+Mantén el `README.md`, `spec.md` y `CHANGELOG.md` actualizados.
 *   *Acción:* Al finalizar cada sesión con Antigravity, termina con el comando: "Actualiza la documentación con lo que hicimos hoy".
-*   *Beneficio:* Si retomas el proyecto en 6 meses, sabrás exactamente dónde te quedaste.
+*   *Beneficio:* Si retomas el proyecto en 6 meses, sabrás exactamente dónde te quedaste. **(Ya hemos creado estos archivos en este proyecto).**
 
 ### E. Ramas (Branches) para Experimentar
 Aprende a pedirle a Antigravity que trabaje en una "rama" aparte.

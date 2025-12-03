@@ -73,6 +73,14 @@ Solo necesitas hacer `push` a la rama `main` y los cambios se reflejarán en uno
 
 👉 **https://alarcone1.github.io/Mega-Evento-Familiar/**
 
+## 📚 Documentación del Proyecto
+
+Para entender mejor cómo se construyó y cómo evoluciona este proyecto, consulta los siguientes documentos:
+
+*   [**WORKFLOW.md**](./WORKFLOW.md): Análisis del flujo de trabajo con IA (Gemini + Antigravity).
+*   [**spec.md**](./spec.md): Especificaciones técnicas y arquitectura del sistema.
+*   [**CHANGELOG.md**](./CHANGELOG.md): Historial de cambios y versiones.
+
 ---
 
 Hecho con ❤️ para la familia.
