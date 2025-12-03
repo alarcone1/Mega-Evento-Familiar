@@ -62,9 +62,14 @@ Pídele a Antigravity que configure **GitHub Actions**.
 *   *Beneficio:* Aseguras que lo que subes a la nube siempre funciona, dándote más confianza como desarrollador.
 
 ### D. Documentación Viva (✅ Implementado)
-Mantén el `README.md`, `spec.md` y `CHANGELOG.md` actualizados.
+Mantén la documentación actualizada. Cada archivo tiene un propósito vital:
+*   **`README.md`:** La portada del proyecto para usuarios y desarrolladores (instalación, uso).
+*   **`spec.md`:** La memoria técnica para la IA (arquitectura, stack, reglas).
+*   **`CHANGELOG.md`:** El historial cronológico de cambios para control de versiones.
+*   **`WORKFLOW.md`:** La guía del proceso y metodología de trabajo.
+
 *   *Acción:* Al finalizar cada sesión con Antigravity, termina con el comando: "Actualiza la documentación con lo que hicimos hoy".
-*   *Beneficio:* Si retomas el proyecto en 6 meses, sabrás exactamente dónde te quedaste. **(Ya hemos creado estos archivos en este proyecto).**
+*   *Beneficio:* Garantiza la mantenibilidad y escalabilidad del proyecto a largo plazo.
 
 ### E. Ramas (Branches) para Experimentar
 Aprende a pedirle a Antigravity que trabaje en una "rama" aparte.
