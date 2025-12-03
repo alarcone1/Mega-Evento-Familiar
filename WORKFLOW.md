@@ -7,8 +7,8 @@ Este documento analiza y formaliza el flujo de trabajo utilizado para crear la a
 El proceso siguió una metodología lineal y progresiva, aprovechando la fortaleza específica de cada herramienta en el momento adecuado:
 
 1.  **Ideación (Gemini Chat):**
-    *   *Acción:* Diálogo socrático para aterrizar una idea abstracta.
-    *   *Resultado:* Definición clara del alcance y funcionalidades.
+    *   *Acción:* Diálogo socrático para aterrizar una idea abstracta y generación de **Especificaciones Técnicas (`spec.md`)**.
+    *   *Resultado:* Definición clara del alcance, funcionalidades y arquitectura técnica.
 2.  **Ingeniería de Prompt (Gemini Chat):**
     *   *Acción:* Construcción de un prompt detallado y técnico basado en la idea definida.
     *   *Resultado:* Un bloque de instrucciones preciso para la IA generadora.
@@ -21,6 +21,9 @@ El proceso siguió una metodología lineal y progresiva, aprovechando la fortale
 5.  **Refinamiento Agentico (Google Antigravity):**
     *   *Acción:* Fork/Clonado del repo y trabajo con un agente de codificación (Antigravity) para iterar, corregir errores, añadir funcionalidades complejas (carrusel, lógica de fechas) y desplegar.
     *   *Resultado:* Aplicación pulida, personalizada y desplegada en producción.
+6.  **Documentación y Cierre (Google Antigravity):**
+    *   *Acción:* Generación automática de documentación técnica (`README`, `CHANGELOG`, `WORKFLOW`) basada en el código final.
+    *   *Resultado:* Proyecto profesional, mantenible y transferible.
 
 ---
 
