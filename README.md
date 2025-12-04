@@ -81,6 +81,9 @@ Para entender mejor cómo se construyó y cómo evoluciona este proyecto, consul
 *   [**spec.md**](./spec.md): Especificaciones técnicas y arquitectura del sistema.
 *   [**CHANGELOG.md**](./CHANGELOG.md): Historial de cambios y versiones.
 
+
+Prompt inicial:
+Analiza este proyecto, instala las dependencias necesarias y ejecuta la aplicación para que pueda verla en el navegador. No hagas ningún cambio en el código, solo quiero verla funcionando
 ---
 
 Hecho con ❤️ para la familia.

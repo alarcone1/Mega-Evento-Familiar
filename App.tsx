@@ -5,6 +5,7 @@ import InfoModal from './components/InfoModal';
 import FloatingParticles from './components/FloatingParticles';
 import Confetti from './components/Confetti';
 import PhotoCarousel from './components/PhotoCarousel';
+import CreditsLogo from './components/CreditsLogo';
 
 // CONFIGURATION: Set your event date here
 // Setting a date in the future for demonstration.
@@ -20,6 +21,7 @@ const App: React.FC = () => {
       {/* Background Ambience */}
       <PhotoCarousel />
       <FloatingParticles />
+      <CreditsLogo />
 
       {/* Conditional Confetti */}
       {isEventStarted && <Confetti />}
