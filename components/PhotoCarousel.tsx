@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // Real photos from public/photos
-const PHOTO_COUNT = 29;
+const PHOTO_COUNT = 30;
 const PHOTOS = Array.from({ length: PHOTO_COUNT }, (_, i) =>
   `/Mega-Evento-Familiar/photos/foto${i + 1}.jpeg`
 );
@@ -25,11 +25,13 @@ const PhotoCarousel: React.FC = () => {
   return (
     <>
       {/* Carousel Container */}
-      <div className="absolute inset-0 z-1 flex items-end pb-48 sm:items-center sm:pb-0 sm:translate-y-32 justify-center overflow-hidden pointer-events-auto">
-        {/* Gradient Masks for "Fade" effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-indigo-500 via-indigo-500/50 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-pink-500 via-pink-500/50 to-transparent z-10 pointer-events-none" />
-
+      <div
+        className="absolute inset-0 z-1 flex items-end pb-48 sm:items-center sm:pb-0 sm:translate-y-32 justify-center overflow-hidden pointer-events-auto"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+        }}
+      >
         {/* Scrolling Track */}
         <div className="flex gap-8 animate-scroll-left hover:pause-animation">
           {displayPhotos.map((photo, index) => (

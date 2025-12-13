@@ -17,7 +17,7 @@ const App: React.FC = () => {
   const [isEventStarted, setIsEventStarted] = useState(false);
 
   return (
-    <div className="min-h-screen relative bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 overflow-hidden flex flex-col">
+    <div className="min-h-screen relative bg-gradient-to-br from-orange-500 via-red-600 to-purple-900 overflow-hidden flex flex-col">
       {/* Background Ambience */}
       <PhotoCarousel />
       <FloatingParticles />
@@ -85,8 +85,8 @@ const App: React.FC = () => {
           onClick={() => setIsModalOpen(true)}
           className="
             group flex items-center gap-3 px-8 py-4 
-            bg-white text-purple-600 
-            rounded-full shadow-xl hover:shadow-2xl hover:shadow-purple-500/50
+            bg-white text-orange-600 
+            rounded-full shadow-xl hover:shadow-2xl hover:shadow-orange-500/50
             transform hover:-translate-y-1 transition-all duration-300
             font-bold text-lg
           "
