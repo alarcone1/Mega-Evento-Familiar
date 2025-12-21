@@ -54,115 +54,91 @@ const FloatingParticles: React.FC = () => {
       vx: number;
       vy: number;
       radius: number;
-      isGrowing: boolean;
       name: string;
-      color: string;
+      alpha: number;
 
-      constructor() {
+      constructor(initialY?: number) {
         this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 1.5;
-        this.vy = (Math.random() - 0.5) * 1.5;
-        this.radius = Math.random() * 20 + 25;
-        this.isGrowing = Math.random() > 0.5;
+        // Start random Y if initial, else start at top
+        this.y = initialY !== undefined ? initialY : -50;
+        // Gentle sway
+        this.vx = (Math.random() - 0.5) * 0.5;
+        // Falling speed based on "depth" (radius)
+        this.vy = Math.random() * 1 + 0.5;
+        this.radius = Math.random() * 40 + 40; // Super Massive snow particles (40-80px)
         this.name = getUniqueName();
-
-        // Generate diverse vibrant color
-        const hue = Math.floor(Math.random() * 360);
-        this.color = `hsla(${hue}, 75%, 75%, 0.4)`;
+        this.alpha = Math.random() * 0.4 + 0.2;
       }
 
       update() {
         this.x += this.vx;
         this.y += this.vy;
 
-        let didBounce = false;
+        // Slight random drift changes
+        this.vx += (Math.random() - 0.5) * 0.02;
+        // Clamp horizontal speed
+        if (this.vx > 1) this.vx = 1;
+        if (this.vx < -1) this.vx = -1;
 
-        if (this.x <= this.radius) {
-          this.x = this.radius;
-          this.vx *= -1;
-          didBounce = true;
-        } else if (this.x >= width - this.radius) {
-          this.x = width - this.radius;
-          this.vx *= -1;
-          didBounce = true;
+        // Reset if off bottom of screen
+        if (this.y > height + 50) {
+          this.y = -50;
+          this.x = Math.random() * width;
+          this.name = getUniqueName(); // New name for new flake
         }
 
-        if (this.y <= this.radius) {
-          this.y = this.radius;
-          this.vy *= -1;
-          didBounce = true;
-        } else if (this.y >= height - this.radius) {
-          this.y = height - this.radius;
-          this.vy *= -1;
-          didBounce = true;
-        }
-
-        if (didBounce) {
-          this.isGrowing = !this.isGrowing;
-          this.name = getUniqueName();
-          // Update color on change for variety
-          const hue = Math.floor(Math.random() * 360);
-          this.color = `hsla(${hue}, 75%, 75%, 0.4)`;
-        }
-
-        const growthSpeed = 0.1;
-        if (this.isGrowing) {
-          this.radius += growthSpeed;
-        } else {
-          this.radius -= growthSpeed;
-        }
-
-        if (this.radius > 65) {
-          this.radius = 65;
-          this.isGrowing = false;
-        } else if (this.radius < 25) {
-          this.radius = 25;
-          this.isGrowing = true;
-        }
+        // Wrap around sides for seamless wind feel
+        if (this.x > width + 20) this.x = -20;
+        if (this.x < -20) this.x = width + 20;
       }
 
       draw() {
         if (!ctx) return;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.save();
+        ctx.translate(this.x, this.y);
 
-        // Bubble visual: subtle white fill, colored stroke
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.beginPath();
+        // Draw a simple snowflake (circle with gradient or white)
+        const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, this.radius);
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${this.alpha})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+        ctx.fillStyle = gradient;
+        ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
         ctx.fill();
-        ctx.strokeStyle = this.color;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-        ctx.closePath();
 
         // Text
-        ctx.fillStyle = this.color;
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha + 0.3})`;
 
         // Logic for multiline text
         const words = this.name.split(' ');
-        // We split if it has words AND isn't just a short connection like "Ana"
         const isTwoLine = words.length > 1;
 
-        // Dynamic font size based on radius, clamped
-        const fontSize = Math.max(8, this.radius / (isTwoLine ? 3.0 : 2.5));
-        ctx.font = `bold ${fontSize}px sans-serif`;
+        // Dynamic font size
+        const fontSize = Math.max(10, this.radius * 0.8);
+        ctx.font = `${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
+        // Shadow for text readability against snow
+        ctx.shadowColor = 'rgba(0,0,0,0.5)';
+        ctx.shadowBlur = 4;
+
         if (isTwoLine) {
-          // Draw 2 lines
           const offset = fontSize * 0.6;
-          ctx.fillText(words[0], this.x, this.y - offset);
-          ctx.fillText(words.slice(1).join(' '), this.x, this.y + offset);
+          ctx.fillText(words[0], 0, -offset);
+          ctx.fillText(words.slice(1).join(' '), 0, offset);
         } else {
-          ctx.fillText(this.name, this.x, this.y);
+          ctx.fillText(this.name, 0, 0);
         }
+
+        ctx.restore();
       }
     }
 
-    // Initialize particles
+    // Initialize particles spread out initially
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push(new Particle());
+      particles.push(new Particle(Math.random() * height));
     }
 
     let animationId: number;
@@ -174,7 +150,7 @@ const FloatingParticles: React.FC = () => {
       // 1. Update positions
       particles.forEach((p) => p.update());
 
-      // 2. Draw Connections
+      // 2. Draw Connections (Subtle Frost Lines)
       for (let a = 0; a < particles.length; a++) {
         for (let b = a + 1; b < particles.length; b++) {
           const dx = particles[a].x - particles[b].x;
@@ -184,9 +160,9 @@ const FloatingParticles: React.FC = () => {
           if (distance < CONNECTION_DISTANCE) {
             const opacity = 1 - (distance / CONNECTION_DISTANCE);
             ctx.beginPath();
-            // Use a subtle mix or white for lines
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.3})`;
-            ctx.lineWidth = 1;
+            // Very subtle white lines
+            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.15})`;
+            ctx.lineWidth = 0.5;
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);
             ctx.stroke();

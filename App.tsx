@@ -17,84 +17,89 @@ const App: React.FC = () => {
   const [isEventStarted, setIsEventStarted] = useState(false);
 
   return (
-    <div className="min-h-screen relative bg-gradient-to-br from-orange-500 via-red-600 to-purple-900 overflow-hidden flex flex-col">
+    <div className="min-h-screen relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 overflow-hidden flex flex-col">
       {/* Background Ambience */}
-      <PhotoCarousel />
       <FloatingParticles />
       <CreditsLogo />
 
       {/* Conditional Confetti */}
       {isEventStarted && <Confetti />}
 
-      <main className="flex-grow flex flex-col items-center justify-center relative z-10 py-12 pointer-events-none">
+      <main className="relative z-10 flex flex-col h-screen w-full overflow-hidden">
 
-        {/* Header Section */}
-        <div className="text-center mb-8 sm:mb-12 px-4 w-full">
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-white text-sm font-semibold tracking-wider border border-white/20 shadow-lg">
+        {/* SECTION 1: Header (Top 20%) */}
+        <div className="flex-none h-[20%] flex flex-col items-center justify-center pt-6 px-4">
+          <div className="inline-block mb-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-blue-100 text-xs font-semibold tracking-wider border border-white/20 shadow-lg shadow-blue-500/20">
             ¡FALTA POCO!
           </div>
-          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-white mb-6 tracking-tight drop-shadow-lg leading-tight">
+          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight drop-shadow-xl leading-tight text-center">
             Mega Evento <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-white to-blue-200 animate-pulse">
               Familiar
             </span>
           </h1>
+        </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-white/90 text-sm sm:text-lg font-medium">
-            {/* Date Pill */}
-            <div className="flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full backdrop-blur-sm border border-white/5 pointer-events-auto">
-              <Calendar className="w-5 h-5 text-yellow-300" />
-              <span>31 de Diciembre, 3:00 PM</span>
+        {/* SECTION 2: Carousel (40%) - Increased from 30% */}
+        <div className="flex-none h-[40%] w-full flex items-center justify-center relative z-20 -mt-6">
+          <PhotoCarousel className="w-full" />
+        </div>
+
+        {/* SECTION 3: Timer (25%) - Decreased from 35% */}
+        <div className="flex-none h-[25%] flex items-center justify-center pointer-events-auto z-10">
+          {isEventStarted ? (
+            <div className="text-center animate-bounce">
+              <h2 className="text-3xl font-bold text-white drop-shadow-lg">¡El evento ha comenzado! 🥳</h2>
             </div>
+          ) : (
+            <div className="transform scale-90 sm:scale-100">
+              <CountdownTimer
+                targetDate={EVENT_DATE}
+                onComplete={() => setIsEventStarted(true)}
+              />
+            </div>
+          )}
+        </div>
 
-            {/* Location Link Pill */}
+        {/* SECTION 4: Action Sheet (Bottom 15%) - Centered & Transparent */}
+        <div className="flex-none h-[15%] w-full mt-auto bg-white/10 backdrop-blur-xl rounded-t-3xl border-t border-white/20 shadow-[0_-5px_20px_rgba(0,0,0,0.3)] flex flex-col items-center justify-center gap-2 z-30 pt-2 pb-4">
+
+          {/* Info: Date & Location Centered */}
+          <div className="flex items-center gap-3 text-xs font-medium text-white/90">
+            <div className="flex items-center gap-1.5 opacity-90">
+              <Calendar className="w-3.5 h-3.5 text-blue-300" />
+              <span>31 Dic, 3PM</span>
+            </div>
+            <div className="h-3 w-[1px] bg-white/40" />
             <a
               href="https://www.tiktok.com/@escapeurbanomtr/video/7526221601902234886"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-black/10 hover:bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm border border-white/5 transition-all hover:scale-105 group cursor-pointer pointer-events-auto"
-              title="Ver video de la finca"
+              className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
             >
-              <MapPin className="w-5 h-5 text-yellow-300 group-hover:animate-bounce" />
-              <span>Finca La Turquesa</span>
-              <ExternalLink className="w-4 h-4 opacity-70 ml-1" />
+              <MapPin className="w-3.5 h-3.5 text-blue-300" />
+              <span>La Turquesa</span>
+              <ExternalLink className="w-3 h-3 opacity-70" />
             </a>
           </div>
-        </div>
 
-        {/* Timer Section */}
-        <div className="pointer-events-auto">
-          <CountdownTimer
-            targetDate={EVENT_DATE}
-            onComplete={() => setIsEventStarted(true)}
-          />
+          {/* Main Action Button (Transparent) */}
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="
+              flex items-center gap-2 px-6 py-2 
+              bg-transparent border-2 border-white/80 text-white
+              rounded-full shadow-lg hover:bg-white/10 hover:shadow-blue-500/30
+              transform active:scale-95 transition-all duration-200
+              font-bold text-sm tracking-wide
+            "
+          >
+            <Gift className="w-4 h-4 text-white" />
+            ¿QUÉ TRAER?
+          </button>
         </div>
-
-        {/* Message for when event starts */}
-        {isEventStarted && (
-          <div className="mt-12 text-center animate-bounce pointer-events-auto">
-            <h2 className="text-4xl font-bold text-white">¡El evento ha comenzado! 🥳</h2>
-          </div>
-        )}
 
       </main>
-
-      {/* Footer / Action Section */}
-      <footer className="relative z-10 pb-12 w-full flex justify-center">
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="
-            group flex items-center gap-3 px-8 py-4 
-            bg-white text-orange-600 
-            rounded-full shadow-xl hover:shadow-2xl hover:shadow-orange-500/50
-            transform hover:-translate-y-1 transition-all duration-300
-            font-bold text-lg
-          "
-        >
-          <Gift className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-          ¿Qué traer?
-        </button>
-      </footer>
 
       {/* Modal Overlay */}
       <InfoModal

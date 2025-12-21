@@ -5,11 +5,14 @@ import { CountdownProps, TimeLeft } from '../types';
 // This ensures the animation only triggers when the 'value' prop changes specifically
 const TimeBox = ({ value, label, flashOnChange = false }: { value: number; label: string; flashOnChange?: boolean }) => {
   const [isFlashing, setIsFlashing] = useState(false);
+  const [flashColor, setFlashColor] = useState<'red' | 'green'>('red');
 
   useEffect(() => {
     if (flashOnChange) {
+      // Pick random Christmas color
+      setFlashColor(Math.random() > 0.5 ? 'red' : 'green');
       setIsFlashing(true);
-      const timer = setTimeout(() => setIsFlashing(false), 2000);
+      const timer = setTimeout(() => setIsFlashing(false), 800);
       return () => clearTimeout(timer);
     }
   }, [value, flashOnChange]);
@@ -18,15 +21,18 @@ const TimeBox = ({ value, label, flashOnChange = false }: { value: number; label
     <div className="flex flex-col items-center">
       <div className="relative group perspective">
         <div className={`
-          w-24 h-28 sm:w-32 sm:h-36 md:w-40 md:h-44
+          w-16 h-20 sm:w-24 sm:h-28 md:w-32 md:h-36
           backdrop-blur-md border border-white/30 
-          rounded-2xl shadow-2xl 
+          rounded-xl shadow-2xl 
           flex items-center justify-center 
           transform transition-transform duration-300 
           group-hover:scale-105 group-hover:-translate-y-1
           cursor-default overflow-hidden
-          transition-colors duration-500
-          ${isFlashing ? 'bg-yellow-400/80 border-yellow-200' : 'bg-white/20 group-hover:bg-white/25'}
+          transition-colors duration-300
+          ${isFlashing
+            ? (flashColor === 'red' ? 'bg-red-600/90 border-red-400 shadow-red-500/50' : 'bg-green-600/90 border-green-400 shadow-green-500/50')
+            : 'bg-white/20 group-hover:bg-white/25'
+          }
         `}>
           {/* Shine effect */}
           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
@@ -40,13 +46,13 @@ const TimeBox = ({ value, label, flashOnChange = false }: { value: number; label
         */}
           <span
             key={value}
-            className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white drop-shadow-md animate-pop block"
+            className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white drop-shadow-md animate-pop block"
           >
             {value.toString().padStart(2, '0')}
           </span>
         </div>
       </div>
-      <span className="mt-2 text-xs sm:text-sm font-bold text-white tracking-widest uppercase opacity-90 shadow-black drop-shadow-sm">
+      <span className="mt-2 text-[10px] sm:text-xs font-bold text-white tracking-widest uppercase opacity-90 shadow-black drop-shadow-sm">
         {label}
       </span>
     </div>

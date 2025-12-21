@@ -6,7 +6,11 @@ const PHOTOS = Array.from({ length: PHOTO_COUNT }, (_, i) =>
   `/Mega-Evento-Familiar/photos/foto${i + 1}.jpeg`
 );
 
-const PhotoCarousel: React.FC = () => {
+interface PhotoCarouselProps {
+  className?: string;
+}
+
+const PhotoCarousel: React.FC<PhotoCarouselProps> = ({ className = "" }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
   // Shuffle photos on mount to ensure random order
@@ -26,7 +30,7 @@ const PhotoCarousel: React.FC = () => {
     <>
       {/* Carousel Container */}
       <div
-        className="absolute inset-0 z-1 flex items-end pb-48 sm:items-center sm:pb-0 sm:translate-y-32 justify-center overflow-hidden pointer-events-auto"
+        className={`flex items-center justify-center overflow-hidden pointer-events-auto ${className}`}
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
@@ -37,28 +41,38 @@ const PhotoCarousel: React.FC = () => {
           {displayPhotos.map((photo, index) => (
             <div
               key={index}
-              className="relative group cursor-pointer transition-all duration-500 hover:scale-110 hover:z-20"
+              className="relative group cursor-pointer transition-all duration-500 hover:scale-110 hover:z-20 pt-8 pr-8" // Added padding for hat overflow space
               onClick={() => setSelectedPhoto(photo)}
             >
-              {/* Photo Frame / Evocation Style */}
-              <div className="
-                w-64 h-48 sm:w-80 sm:h-60 
-                rounded-lg overflow-hidden 
-                border-4 border-white/20 shadow-2xl 
-                transform rotate-2 hover:rotate-0 transition-transform duration-500
-              ">
+              <div className="relative">
+                {/* Photo Frame / Evocation Style (Clipped Content) */}
+                <div className="
+                  w-40 h-28 sm:w-64 sm:h-48 md:w-80 md:h-60 
+                  rounded-lg overflow-hidden 
+                  border-2 sm:border-4 border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.3)]
+                  transform rotate-2 hover:rotate-0 transition-transform duration-500
+                  bg-white/10 backdrop-blur-sm
+                ">
+                  <img
+                    src={photo}
+                    alt={`Memory ${index}`}
+                    className="
+                      w-full h-full object-cover 
+                      filter brightness-110 contrast-110
+                      group-hover:brightness-100 group-hover:contrast-100
+                      transition-all duration-700 ease-in-out
+                    "
+                  />
+                  {/* Frost Vignette Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/10 opacity-50 pointer-events-none" />
+                </div>
+
+                {/* Santa Hat Decoration (Unclipped) */}
                 <img
-                  src={photo}
-                  alt={`Memory ${index}`}
-                  className="
-                    w-full h-full object-cover 
-                    filter sepia-[0.5] grayscale-[0.3] contrast-125
-                    group-hover:sepia-0 group-hover:grayscale-0 group-hover:contrast-100
-                    transition-all duration-700 ease-in-out
-                  "
+                  src="/Mega-Evento-Familiar/santa_hat.svg"
+                  alt="Santa Hat"
+                  className="absolute -top-10 -right-8 w-16 h-16 drop-shadow-lg transform rotate-12 z-50 pointer-events-none"
                 />
-                {/* Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-500" />
               </div>
             </div>
           ))}
