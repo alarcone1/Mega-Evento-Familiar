@@ -47,7 +47,7 @@ const PhotoCarousel: React.FC<PhotoCarouselProps> = ({ className = "" }) => {
               <div className="relative">
                 {/* Photo Frame / Evocation Style (Clipped Content) */}
                 <div className="
-                  w-40 h-28 sm:w-64 sm:h-48 md:w-80 md:h-60 
+                  w-60 h-44 sm:w-96 sm:h-72 md:w-[30rem] md:h-[22rem] 
                   rounded-lg overflow-hidden 
                   border-2 sm:border-4 border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.3)]
                   transform rotate-2 hover:rotate-0 transition-transform duration-500

@@ -32,7 +32,7 @@ const App: React.FC = () => {
           <div className="inline-block mb-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-blue-100 text-xs font-semibold tracking-wider border border-white/20 shadow-lg shadow-blue-500/20">
             ¡FALTA POCO!
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight drop-shadow-xl leading-tight text-center">
+          <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight drop-shadow-xl leading-tight text-center">
             Mega Evento <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-white to-red-600 animate-pulse drop-shadow-sm">
               Familiar
