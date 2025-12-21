@@ -114,8 +114,9 @@ const FloatingParticles: React.FC = () => {
         const words = this.name.split(' ');
         const isTwoLine = words.length > 1;
 
-        // Dynamic font size
-        const fontSize = Math.max(10, this.radius * 0.8);
+        // Dynamic font size - Reduced by ~60% as requested
+        // Previous multiplier was 0.8, now using 0.3
+        const fontSize = Math.max(8, this.radius * 0.3);
         ctx.font = `${fontSize}px sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';

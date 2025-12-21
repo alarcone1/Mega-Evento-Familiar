@@ -34,7 +34,7 @@ const App: React.FC = () => {
           </div>
           <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight drop-shadow-xl leading-tight text-center">
             Mega Evento <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-white to-blue-200 animate-pulse">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-white to-red-600 animate-pulse drop-shadow-sm">
               Familiar
             </span>
           </h1>
@@ -46,7 +46,7 @@ const App: React.FC = () => {
         </div>
 
         {/* SECTION 3: Timer (25%) - Decreased from 35% */}
-        <div className="flex-none h-[25%] flex items-center justify-center pointer-events-auto z-10">
+        <div className="flex-none h-[25%] flex items-center justify-center pointer-events-auto relative z-50">
           {isEventStarted ? (
             <div className="text-center animate-bounce">
               <h2 className="text-3xl font-bold text-white drop-shadow-lg">¡El evento ha comenzado! 🥳</h2>
