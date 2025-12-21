@@ -6,6 +6,7 @@ import FloatingParticles from './components/FloatingParticles';
 import Confetti from './components/Confetti';
 import PhotoCarousel from './components/PhotoCarousel';
 import CreditsLogo from './components/CreditsLogo';
+import ChristmasLights from './components/ChristmasLights';
 
 // CONFIGURATION: Set your event date here
 // Setting a date in the future for demonstration.
@@ -20,6 +21,7 @@ const App: React.FC = () => {
     <div className="min-h-screen relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 overflow-hidden flex flex-col">
       {/* Background Ambience */}
       <FloatingParticles />
+      <ChristmasLights />
       <CreditsLogo />
 
       {/* Conditional Confetti */}
