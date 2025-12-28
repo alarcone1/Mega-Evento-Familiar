@@ -3,14 +3,14 @@ import { CountdownProps, TimeLeft } from '../types';
 
 // Extracted TimeBox to prevent unnecessary re-renders of the component structure
 // This ensures the animation only triggers when the 'value' prop changes specifically
-const TimeBox = ({ value, label, flashOnChange = false }: { value: number; label: string; flashOnChange?: boolean }) => {
+const TimeBox = ({ value, label, neonColor, flashOnChange = false }: { value: number; label: string; neonColor: string; flashOnChange?: boolean }) => {
   const [isFlashing, setIsFlashing] = useState(false);
   const [flashColor, setFlashColor] = useState<'red' | 'green'>('red');
 
   useEffect(() => {
     if (flashOnChange) {
-      // Pick random Christmas color
-      setFlashColor(Math.random() > 0.5 ? 'red' : 'green');
+      // Pick random Gala color (Amber or Gold)
+      setFlashColor(Math.random() > 0.5 ? 'red' : 'green'); // Keeping variable names but mapping to golden styles
       setIsFlashing(true);
       const timer = setTimeout(() => setIsFlashing(false), 800);
       return () => clearTimeout(timer);
@@ -30,7 +30,7 @@ const TimeBox = ({ value, label, flashOnChange = false }: { value: number; label
           cursor-default overflow-hidden
           transition-colors duration-300
           ${isFlashing
-            ? (flashColor === 'red' ? 'bg-red-600/90 border-red-400 shadow-red-500/50' : 'bg-green-600/90 border-green-400 shadow-green-500/50')
+            ? (flashColor === 'red' ? 'bg-amber-500/90 border-yellow-400 shadow-yellow-500/50' : 'bg-yellow-600/90 border-yellow-300 shadow-amber-500/50')
             : 'bg-white/20 group-hover:bg-white/25'
           }
         `}>
@@ -46,7 +46,7 @@ const TimeBox = ({ value, label, flashOnChange = false }: { value: number; label
         */}
           <span
             key={value}
-            className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white drop-shadow-md animate-pop block"
+            className={`text-3xl sm:text-5xl md:text-6xl font-extrabold drop-shadow-[0_0_10px_currentColor] animate-pop block ${neonColor}`}
           >
             {value.toString().padStart(2, '0')}
           </span>
@@ -104,10 +104,10 @@ const CountdownTimer: React.FC<CountdownProps> = ({ targetDate, onComplete }) =>
     // Changed grid-cols-4 to grid-cols-2 for a 2x2 matrix
     // Adjusted max-width to keep it compact
     <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-md px-4 mx-auto">
-      <TimeBox value={timeLeft.days} label="Días" flashOnChange={true} />
-      <TimeBox value={timeLeft.hours} label="Horas" flashOnChange={true} />
-      <TimeBox value={timeLeft.minutes} label="Minutos" flashOnChange={true} />
-      <TimeBox value={timeLeft.seconds} label="Segundos" />
+      <TimeBox value={timeLeft.days} label="Días" neonColor="text-cyan-400" flashOnChange={true} />
+      <TimeBox value={timeLeft.hours} label="Horas" neonColor="text-pink-500" flashOnChange={true} />
+      <TimeBox value={timeLeft.minutes} label="Minutos" neonColor="text-green-400" flashOnChange={true} />
+      <TimeBox value={timeLeft.seconds} label="Segundos" neonColor="text-yellow-400" />
     </div>
   );
 };

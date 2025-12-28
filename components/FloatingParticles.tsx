@@ -63,11 +63,11 @@ const FloatingParticles: React.FC = () => {
         this.y = initialY !== undefined ? initialY : -50;
         // Gentle sway
         this.vx = (Math.random() - 0.5) * 0.5;
-        // Falling speed based on "depth" (radius)
-        this.vy = Math.random() * 1 + 0.5;
-        this.radius = Math.random() * 40 + 40; // Super Massive snow particles (40-80px)
+        // Upward movement for bubbles
+        this.vy = -(Math.random() * 0.8 + 0.3);
+        this.radius = Math.random() * 30 + 10;
         this.name = getUniqueName();
-        this.alpha = Math.random() * 0.4 + 0.2;
+        this.alpha = Math.random() * 0.5 + 0.3;
       }
 
       update() {
@@ -81,10 +81,11 @@ const FloatingParticles: React.FC = () => {
         if (this.vx < -1) this.vx = -1;
 
         // Reset if off bottom of screen
-        if (this.y > height + 50) {
-          this.y = -50;
+        // Reset if off top of screen (since they rise)
+        if (this.y < -100) {
+          this.y = height + 50;
           this.x = Math.random() * width;
-          this.name = getUniqueName(); // New name for new flake
+          this.name = getUniqueName();
         }
 
         // Wrap around sides for seamless wind feel
@@ -98,13 +99,20 @@ const FloatingParticles: React.FC = () => {
         ctx.translate(this.x, this.y);
 
         ctx.beginPath();
-        // Draw a simple snowflake (circle with gradient or white)
+        // Draw a golden bubble / sparkle
         const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, this.radius);
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${this.alpha})`);
-        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        gradient.addColorStop(0, `rgba(255, 215, 0, ${this.alpha})`); // Gold
+        gradient.addColorStop(0.5, `rgba(218, 165, 32, ${this.alpha * 0.5})`); // Goldenrod
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.fillStyle = gradient;
         ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Extra sparkle center
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha + 0.2})`;
+        ctx.arc(0, 0, this.radius * 0.1, 0, Math.PI * 2);
         ctx.fill();
 
         // Text
@@ -162,7 +170,8 @@ const FloatingParticles: React.FC = () => {
             const opacity = 1 - (distance / CONNECTION_DISTANCE);
             ctx.beginPath();
             // Very subtle white lines
-            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.15})`;
+            // Even more intense golden lines
+            ctx.strokeStyle = `rgba(255, 215, 0, ${opacity * 0.6})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);

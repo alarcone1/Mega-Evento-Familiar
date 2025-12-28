@@ -67,12 +67,23 @@ const PhotoCarousel: React.FC<PhotoCarouselProps> = ({ className = "" }) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-white/10 opacity-50 pointer-events-none" />
                 </div>
 
-                {/* Santa Hat Decoration (Unclipped) */}
-                <img
-                  src="/Mega-Evento-Familiar/santa_hat.svg"
-                  alt="Santa Hat"
-                  className="absolute -top-10 -right-8 w-16 h-16 drop-shadow-lg transform rotate-12 z-50 pointer-events-none"
-                />
+                {/* New Year Sphere Decoration (Shiny & Festive) */}
+                <div className="absolute -top-12 -right-10 w-24 h-24 z-50 pointer-events-none group-hover:scale-110 transition-transform duration-500">
+                  <div className="
+                    w-full h-full rounded-full 
+                    bg-gradient-to-br from-yellow-200 via-yellow-500 to-amber-700 
+                    shadow-[0_0_20px_rgba(251,191,36,0.6),inset_-5px_-5px_15px_rgba(0,0,0,0.3)]
+                    flex flex-col items-center justify-center border-2 border-yellow-200/50 
+                    animate-bounce-slow
+                  ">
+                    <span className="text-[10px] font-bold text-white drop-shadow-md leading-none">FELIZ</span>
+                    <span className="text-xl font-black text-white drop-shadow-lg tracking-tighter">2026</span>
+                    {/* Inner Shine */}
+                    <div className="absolute top-2 left-4 w-6 h-4 bg-white/40 rounded-full blur-[2px] rotate-[-20deg]" />
+                  </div>
+                  {/* Sphere String */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-0.5 h-12 bg-white/40" />
+                </div>
               </div>
             </div>
           ))}
@@ -127,6 +138,13 @@ const PhotoCarousel: React.FC<PhotoCarouselProps> = ({ className = "" }) => {
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
+        }
+        @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+        .animate-bounce-slow {
+          animation: bounce-slow 3s ease-in-out infinite;
         }
       `}</style>
     </>

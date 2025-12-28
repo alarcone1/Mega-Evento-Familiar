@@ -16,7 +16,7 @@ const Confetti: React.FC = () => {
     canvas.height = height;
 
     const particles: Particle[] = [];
-    const colors = ['#FFC700', '#FF0055', '#0099FF', '#00FF66', '#9900FF'];
+    const colors = ['#FFD700', '#C0C0C0', '#CD7F32', '#F5F5F5', '#FFDF00']; // Gold, Silver, Bronze, White, Yellow-Gold
 
     class Particle {
       x: number;
@@ -78,7 +78,7 @@ const Confetti: React.FC = () => {
       particles.forEach((p, index) => {
         p.update();
         p.draw();
-        
+
         // Remove particles off screen
         if (p.y > height + 100) {
           particles.splice(index, 1);

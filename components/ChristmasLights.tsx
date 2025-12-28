@@ -2,7 +2,8 @@ import React from 'react';
 
 const ChristmasLights: React.FC = () => {
     // Generate a sequence of colors for the lights
-    const colors = ['bg-red-500', 'bg-green-500', 'bg-yellow-400', 'bg-blue-500'];
+    // Gala colors for New Year (Amber, Golden, White)
+    const colors = ['bg-amber-400', 'bg-yellow-300', 'bg-amber-500', 'bg-yellow-200'];
 
     return (
         <div className="absolute top-0 left-0 w-full z-40 pointer-events-none overflow-hidden h-16">
@@ -24,7 +25,7 @@ const ChristmasLights: React.FC = () => {
                             <div
                                 className={`
                   w-3 h-4 sm:w-4 sm:h-6 rounded-full ${colorClass} 
-                  shadow-[0_0_10px_currentColor] 
+                  shadow-[0_0_15px_rgba(251,191,36,0.8)] 
                   animate-pulse
                 `}
                                 style={{

@@ -9,9 +9,9 @@ const InfoModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     { icon: '👟', text: "Ropa cómoda (Actividades)" },
     { icon: '🩳', text: "Vestido de baño" },
     { icon: '🎲', text: "Juegos de mesa" },
-    { icon: '🍻', text: "Bebidas para compartir" },
+    { icon: '🍾', text: "Bebidas para brindar" },
     { icon: '🍗', text: "¡Mucha hambre!" },
-    { icon: '🎁', text: "Regalo (Amigo Secreto)" },
+    { icon: '🎁', text: "Regalo" },
   ];
 
   return (
@@ -27,26 +27,26 @@ const InfoModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
         {/* Festive Header */}
         <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10">
-          <div className="bg-red-600 text-white w-20 h-20 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
-            <span className="text-4xl">🎅</span>
+          <div className="bg-gradient-to-br from-yellow-200 via-yellow-500 to-amber-600 text-white w-20 h-20 rounded-full flex items-center justify-center border-4 border-slate-900 shadow-xl shadow-yellow-500/20">
+            <span className="text-4xl">🥂</span>
           </div>
         </div>
 
-        <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-white/40">
+        <div className="bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/20">
           {/* Header Background */}
-          <div className="bg-gradient-to-r from-red-600 to-red-700 h-24 flex items-center justify-center pt-8">
-            <h3 className="text-2xl font-black text-white drop-shadow-md tracking-wide">
+          <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 h-24 flex items-center justify-center pt-8 border-b border-white/10">
+            <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-200 drop-shadow-md tracking-wide">
               ¿QUÉ TRAER?
             </h3>
           </div>
 
           {/* List Content */}
-          <div className="p-6 pt-8">
+          <div className="p-6 pt-8 bg-slate-900/50">
             <ul className="space-y-3">
               {items.map((item, index) => (
-                <li key={index} className="flex items-center gap-4 p-2.5 rounded-xl hover:bg-red-50 transition-colors group">
+                <li key={index} className="flex items-center gap-4 p-2.5 rounded-xl hover:bg-white/5 transition-colors group border border-transparent hover:border-white/10 shadow-sm">
                   <span className="text-2xl filter drop-shadow-sm group-hover:scale-110 transition-transform duration-200">{item.icon}</span>
-                  <span className="text-gray-700 font-bold text-sm sm:text-base">{item.text}</span>
+                  <span className="text-gray-200 font-bold text-sm sm:text-base">{item.text}</span>
                 </li>
               ))}
             </ul>
@@ -55,9 +55,9 @@ const InfoModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               <button
                 onClick={onClose}
                 className="
-                    w-full py-3.5 rounded-xl font-black tracking-wider text-white shadow-lg
-                    bg-gradient-to-r from-green-600 to-green-500
-                    hover:from-green-500 hover:to-green-400
+                    w-full py-3.5 rounded-xl font-black tracking-wider text-slate-900 shadow-lg shadow-yellow-500/20
+                    bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-500
+                    hover:from-yellow-200 hover:to-yellow-400
                     transform hover:-translate-y-1 transition-all duration-200
                     flex items-center justify-center gap-2
                     "
@@ -72,7 +72,7 @@ const InfoModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         {/* Floating Close Button */}
         <button
           onClick={onClose}
-          className="absolute -top-4 -right-4 bg-white text-red-600 p-2 rounded-full shadow-lg hover:bg-gray-100 transition-transform hover:scale-110 z-20 border-2 border-red-100"
+          className="absolute -top-4 -right-4 bg-slate-800 text-yellow-500 p-2 rounded-full shadow-lg hover:bg-slate-700 transition-transform hover:scale-110 z-20 border-2 border-yellow-500"
         >
           <X size={24} strokeWidth={3} />
         </button>

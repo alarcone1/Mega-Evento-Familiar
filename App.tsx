@@ -18,7 +18,7 @@ const App: React.FC = () => {
   const [isEventStarted, setIsEventStarted] = useState(false);
 
   return (
-    <div className="min-h-screen relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 overflow-hidden flex flex-col">
+    <div className="min-h-screen relative bg-gradient-to-br from-black via-slate-900 to-indigo-950 overflow-hidden flex flex-col">
       {/* Background Ambience */}
       <FloatingParticles />
       <ChristmasLights />
@@ -36,7 +36,7 @@ const App: React.FC = () => {
           </div>
           <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight drop-shadow-xl leading-tight text-center">
             Mega Evento <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-white to-red-600 animate-pulse drop-shadow-sm">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-500 to-yellow-200 animate-pulse drop-shadow-[0_0_10px_rgba(234,179,8,0.3)]">
               Familiar
             </span>
           </h1>
